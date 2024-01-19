@@ -1,7 +1,7 @@
 import os
 
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Flask, make_response, request, jsonify, render_template
 from flask_migrate import Migrate
@@ -11,9 +11,9 @@ from models import db, Restaurant, Pizza, RestaurantPizza
 
 app = Flask(
     __name__,
-    # static_url_path='',
-    # static_folder='static',
-    # template_folder='templates'
+    static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
 )
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizzas.db'
@@ -23,6 +23,11 @@ app.json.compact = False
 migrate = Migrate(app, db)
 
 db.init_app(app)
+
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template('index.html')
 
 api = Api(app)
 
