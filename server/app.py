@@ -78,6 +78,7 @@ class RestaurantsById(Resource):
         
         else:
             return make_response(jsonify({'error': 'Restaurant not found'}), 404)
+        
 
 
 
