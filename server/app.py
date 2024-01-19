@@ -38,12 +38,53 @@ class Restaurants(Resource):
         ]
 
         return make_response(jsonify(restaurants_dict), 200)
+    
+class RestaurantsById(Resource):
+    def get(self, id):
+        restaurant = Restaurant.query.filter_by(id=id).first()
+
+        if restaurant:
+            restaurant_dict = {
+                'id': restaurant.id,
+                'name': restaurant.name,
+                'address': restaurant.address,
+                'pizzas': []
+            }
+
+            for restaurant_pizza in restaurant.restaurant_pizzas:
+                pizza = Pizza.query.filter_by(id=restaurant_pizza.pizza_id).first()
+
+                pizza_dict = {
+                    'id': pizza.id,
+                    'name': pizza.name,
+                    'ingredients': pizza.ingredients
+                }
+
+                restaurant_dict['pizzas'].append(pizza_dict)
+
+            return make_response(jsonify(restaurant_dict), 200)
+        
+        else:
+            return make_response(jsonify({'error': 'Restaurant not found'}), 404)
+        
+
+    def delete(self, id):
+        restaurant = Restaurant.query.filter_by(id=id).first()
+
+        if restaurant:
+            db.session.delete(restaurant)
+            db.session.commit()
+            return make_response(jsonify({'message': 'Restaurant deleted'}), 200)
+        
+        else:
+            return make_response(jsonify({'error': 'Restaurant not found'}), 404)
 
 
 
 
 
 api.add_resource(Restaurants, '/restaurants')
+api.add_resource(RestaurantsById, '/restaurants/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555)
