@@ -34,7 +34,13 @@ export default function AddPizzaFormComponent() {
             body: JSON.stringify(formData),
         })
             .then((response) => response.json())
-            .then((data) => console.log('Success:', data))
+            .then((data) => {
+                console.log('Success:', data)
+                setFormData({
+                    price: '',
+                    pizza_id: '',
+                    restaurant_id: '',
+                })})
             .catch((error) => console.error('Error:', error));
     }
 
