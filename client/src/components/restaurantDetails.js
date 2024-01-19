@@ -19,13 +19,13 @@ export default function RestaurantDetails() {
     }
 
     return (
-        <div>
-            <h2>{restaurant.name}</h2>
+        <div className="container">
+            <h2 className="heading">{restaurant.name}</h2>
             <p>Address: {restaurant.address}</p>
-            <h3>Pizzas</h3>
-            <ul>
+            <h3 className="sub-heading">Pizzas</h3>
+            <ul className="pizza-list">
                 {restaurant.pizzas.map((pizza) => (
-                    <li key={pizza.id}>
+                    <li key={pizza.id} className="pizza-item">
                         {pizza.name} - {pizza.ingredients}
                     </li>
                 ))}

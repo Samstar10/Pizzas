@@ -12,11 +12,11 @@ export default function Pizzas() {
       }, []);
 
     return (
-        <div>
-            <h2>Pizzas</h2>
-            <ul>
+        <div className="container">
+            <h2 className="heading">Pizzas</h2>
+            <ul className="pizza-list">
                 {pizzas.map((pizza) => (
-                    <li key={pizza.id}>
+                    <li key={pizza.id} className="pizza-item">
                         {pizza.name} - {pizza.ingredients}
                     </li>
                 ))}

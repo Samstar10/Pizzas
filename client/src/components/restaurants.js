@@ -14,11 +14,11 @@ export default function Restaurants() {
         
 
     return (
-        <div>
-            <h1>Restaurants</h1>
-            <ul>
+        <div className="container">
+            <h1 className="heading">Restaurants</h1>
+            <ul className="restaurant-list">
                 {restaurants.map((restaurant) => (
-                    <li key={restaurant.id}>
+                    <li key={restaurant.id} className="restaurant-item">
                         <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                     </li>
                 ))}
