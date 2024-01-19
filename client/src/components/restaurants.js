@@ -18,7 +18,7 @@ export default function Restaurants() {
             <ul>
                 {restaurants.map((restaurant) => (
                     <li key={restaurant.id}>
-                        {restaurant.name}, {restaurant.address}
+                        {restaurant.name}
                     </li>
                 ))}
             </ul>
