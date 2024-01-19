@@ -80,12 +80,27 @@ class RestaurantsById(Resource):
             return make_response(jsonify({'error': 'Restaurant not found'}), 404)
         
 
+class Pizzas(Resource):
+    def get(self):
+        pizzas = Pizza.query.all()
+        pizzas_dict = [
+            {
+                'id': pizza.id,
+                'name': pizza.name,
+                'ingredients': pizza.ingredients
+            } for pizza in pizzas
+        ]
+
+        return make_response(jsonify(pizzas_dict), 200)
+    
+
 
 
 
 
 api.add_resource(Restaurants, '/restaurants')
 api.add_resource(RestaurantsById, '/restaurants/<int:id>')
+api.add_resource(Pizzas, '/pizzas')
 
 if __name__ == '__main__':
     app.run(port=5555)
