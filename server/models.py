@@ -13,5 +13,16 @@ class Restaurant(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Restaurant {self.name} in {self.address}>'
+    
+
+class  Pizza(db.Model, SerializerMixin):
+    __tablename__ = 'pizzas'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    ingredients = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f'<Pizza {self.name} with {self.ingredients}>'
 
     
