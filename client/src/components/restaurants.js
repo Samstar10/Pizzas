@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Restaurants() {
 
@@ -18,7 +19,7 @@ export default function Restaurants() {
             <ul>
                 {restaurants.map((restaurant) => (
                     <li key={restaurant.id}>
-                        {restaurant.name}
+                        <NavLink to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
                     </li>
                 ))}
             </ul>
