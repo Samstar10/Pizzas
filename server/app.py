@@ -94,13 +94,44 @@ class Pizzas(Resource):
         return make_response(jsonify(pizzas_dict), 200)
     
 
+class RestaurantPizzas(Resource):
+    def post(self):
+    
+        data = request.get_json()
 
+        price = int(data['price'])
+        pizza_id = int(data['pizza_id'])
+        restaurant_id = int(data['restaurant_id'])
+
+        restaurant_pizza = RestaurantPizza(
+            price=price,
+            pizza_id=pizza_id,
+            restaurant_id=restaurant_id
+        )
+
+        try:
+            db.session.add(restaurant_pizza)
+            db.session.commit()
+
+            pizza = Pizza.query.filter_by(id=pizza_id).first()
+
+            pizza_dict = {
+                'id': pizza.id,
+                'name': pizza.name,
+                'ingredients': pizza.ingredients
+            }
+
+            return make_response(jsonify(pizza_dict), 201)
+
+        except:
+            return make_response(jsonify({'error': 'Something went wrong'}), 500)
 
 
 
 api.add_resource(Restaurants, '/restaurants')
 api.add_resource(RestaurantsById, '/restaurants/<int:id>')
 api.add_resource(Pizzas, '/pizzas')
+api.add_resource(RestaurantPizzas, '/restaurant_pizzas')
 
 if __name__ == '__main__':
     app.run(port=5555)
