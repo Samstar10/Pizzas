@@ -7,6 +7,7 @@ export default function Home() {
         <div className="home-buttons">
             <NavLink to="/restaurants"><button>Restaurants</button></NavLink>
             <NavLink to="/pizzas"><button>Pizzas</button></NavLink>
+            <NavLink to="/restaurant_pizzas"><button>Restaurant Pizzas</button></NavLink>
         </div>
     );
 }
