@@ -3,6 +3,7 @@ import './App.css';
 import Restaurants from './components/restaurants';
 import RestaurantDetails from './components/restaurantDetails';
 import Pizzas from './components/pizzas';
+import AddPizzaFormComponent from './components/AddPizzaFormComponent';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Restaurants />
       <RestaurantDetails />
       <Pizzas />
+      <AddPizzaFormComponent />
     </div>
   );
 }
