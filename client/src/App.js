@@ -6,10 +6,12 @@ import RestaurantDetails from './components/restaurantDetails';
 import Pizzas from './components/pizzas';
 import AddPizzaFormComponent from './components/AddPizzaFormComponent';
 import Home from './components/home';
+import Header from './components/header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/restaurants" element={<Restaurants />} />
